@@ -1,5 +1,8 @@
 package datenspeicherung.datei;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import datenspeicherung.ProduktDaten;
@@ -23,7 +26,32 @@ public class ProduktSpeicher
 	
 	public ArrayList<ProduktDaten> liesProdukte()
 	{
+		ArrayList<ProduktDaten> daten = new ArrayList<>();
 		
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader("produkt.csv"));
+			String zeile;
+			while((zeile = br.readLine()) != null)
+			{
+				String[] zeilenDaten = zeile.split(";");
+
+				int produktNr = Integer.parseInt(zeilenDaten[0]);
+				String bezeichnung = zeilenDaten[1];
+				double verkaufsPreis = Double.parseDouble(zeilenDaten[2]);
+				double lagerbestand = Double.parseDouble(zeilenDaten[3]);
+
+				daten.add(new ProduktDaten(produktNr, bezeichnung, verkaufsPreis, lagerbestand));
+			}
+			
+			br.close();
+		}
+		catch (Exception e)
+		{
+			// TODO: handle exception
+		}
+		
+		return daten;
 	}
 	
 	public void loesche(int pProduktNr)
