@@ -1,6 +1,8 @@
-package datenspeicherung;
+package datenspeicherung.datei;
 
 import java.util.ArrayList;
+
+import datenspeicherung.ProduktDaten;
 
 public class ProduktSpeicher
 {
