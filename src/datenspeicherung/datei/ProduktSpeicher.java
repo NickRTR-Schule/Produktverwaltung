@@ -21,10 +21,10 @@ public class ProduktSpeicher
 	
 	public void fuegeHinzu(String pBezeichnung, double pVerkaufspreis, double pLagerbestand)
 	{
-		
+		ArrayList<ProduktDaten> daten = new ArrayList<>();
 	}
 	
-	public ArrayList<ProduktDaten> liesProdukte()
+	public ArrayList<ProduktDaten> liesProdukte() throws Exception
 	{
 		ArrayList<ProduktDaten> daten = new ArrayList<>();
 		
@@ -48,7 +48,7 @@ public class ProduktSpeicher
 		}
 		catch (Exception e)
 		{
-			// TODO: handle exception
+			throw new Exception("Fehler: " + e.getLocalizedMessage());
 		}
 		
 		return daten;
