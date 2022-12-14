@@ -13,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Benutzerschnittstelle extends JFrame
 {
@@ -81,6 +85,12 @@ public class Benutzerschnittstelle extends JFrame
 		contentPane.add(scrProdukte);
 		
 		tblProdukte = new JTable();
+		tblProdukte.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				geklickProdukt();
+			}
+		});
 		scrProdukte.setViewportView(tblProdukte);
 		tblProdukte.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -142,14 +152,29 @@ public class Benutzerschnittstelle extends JFrame
 		txtLagerbestand.setColumns(10);
 		
 		btnHinzufuegen = new JButton("hinzufügen");
+		btnHinzufuegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				geklicktHinzufuegen();
+			}
+		});
 		btnHinzufuegen.setBounds(10, 425, 161, 23);
 		contentPane.add(btnHinzufuegen);
 		
 		btnAendern = new JButton("ändern");
+		btnAendern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				geklicktAendern();
+			}
+		});
 		btnAendern.setBounds(181, 425, 150, 23);
 		contentPane.add(btnAendern);
 		
 		btnLoeschen = new JButton("löschen");
+		btnLoeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				geklicktLoeschen();
+			}
+		});
 		btnLoeschen.setBounds(341, 425, 158, 23);
 		contentPane.add(btnLoeschen);
 		tblProdukte.getColumnModel().getColumn(0).setResizable(false);
@@ -160,5 +185,21 @@ public class Benutzerschnittstelle extends JFrame
 		tblProdukte.getColumnModel().getColumn(2).setResizable(false);
 		tblProdukte.getColumnModel().getColumn(3).setResizable(false);
 		tblProdukte.getColumnModel().getColumn(3).setPreferredWidth(77);
+	}
+
+	protected void geklicktLoeschen() {
+		
+	}
+
+	protected void geklicktAendern() {
+		
+	}
+
+	private void geklicktHinzufuegen() {
+		
+	}
+
+	private void geklickProdukt() {
+		
 	}
 }
