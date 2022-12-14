@@ -1,6 +1,5 @@
 package benutzerschnittstelle;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import datenspeicherung.ProduktDaten;
+import steuerung.Steuerung;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -22,6 +22,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Benutzerschnittstelle extends JFrame
 {
@@ -71,12 +73,14 @@ public class Benutzerschnittstelle extends JFrame
 			}
 		});
 	}
+	
+	Steuerung dieSteuerung;
 
 	/**
 	 * Create the frame.
 	 */
 	public Benutzerschnittstelle()
-	{
+	{		
 		setTitle("Verwaltungsprodukte");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 832, 590);
@@ -190,21 +194,32 @@ public class Benutzerschnittstelle extends JFrame
 		tblProdukte.getColumnModel().getColumn(2).setResizable(false);
 		tblProdukte.getColumnModel().getColumn(3).setResizable(false);
 		tblProdukte.getColumnModel().getColumn(3).setPreferredWidth(77);
+		
+		dieSteuerung = new Steuerung(this);
 	}
 
 	protected void geklicktLoeschen() 
 	{
-		
+		dieSteuerung.geklicktLoeschen(tblProdukte.getSelectedRow());
 	}
 
 	protected void geklicktAendern() 
 	{
+		int produktnr = Integer.parseInt(txtProduktnummer.getText());
+		String bezeichnung = txtBezeichnung.getText();
+		double verkaufspreis = Double.parseDouble(txtVerkaufspreis.getText());
+		double lagerbestand = Double.parseDouble(txtLagerbestand.getText());
 		
+		dieSteuerung.geklicktAendern(produktnr, bezeichnung, verkaufspreis, lagerbestand);
 	}
 
 	private void geklicktHinzufuegen() 
-	{
+	{	
+		String bezeichnung = txtBezeichnung.getText();
+		double verkaufspreis = Double.parseDouble(txtVerkaufspreis.getText());
+		double lagerbestand = Double.parseDouble(txtLagerbestand.getText());
 		
+		dieSteuerung.geklicktHinzufuegen(bezeichnung, verkaufspreis, lagerbestand);
 	}
 
 	private void geklickProdukt() 
