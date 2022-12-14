@@ -8,13 +8,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import datenspeicherung.ProduktDaten;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -187,19 +192,56 @@ public class Benutzerschnittstelle extends JFrame
 		tblProdukte.getColumnModel().getColumn(3).setPreferredWidth(77);
 	}
 
-	protected void geklicktLoeschen() {
+	protected void geklicktLoeschen() 
+	{
 		
 	}
 
-	protected void geklicktAendern() {
+	protected void geklicktAendern() 
+	{
 		
 	}
 
-	private void geklicktHinzufuegen() {
+	private void geklicktHinzufuegen() 
+	{
 		
 	}
 
-	private void geklickProdukt() {
+	private void geklickProdukt() 
+	{
+		// Auf welches Produkt in der Tabelle wurde geklickt?
+		int zeile = tblProdukte.getSelectedRow();
 		
+		String produktnr = tblProdukte.getModel().getValueAt(zeile, 0).toString();
+		String bezeichnung = tblProdukte.getModel().getValueAt(zeile, 1).toString();
+		String verkaufspreis = tblProdukte.getModel().getValueAt(zeile, 2).toString();
+		String lagerbestand = tblProdukte.getModel().getValueAt(zeile, 3).toString();
+		
+		txtProduktnummer.setText(produktnr);
+		txtBezeichnung.setText(bezeichnung);
+		txtVerkaufspreis.setText(verkaufspreis);
+		txtLagerbestand.setText(lagerbestand);
+	}
+	
+	public void zeigeMeldung(String pMeldung)
+	{
+		JOptionPane.showMessageDialog(this, pMeldung);
+	}
+	
+	public void zeigeProdukte(ArrayList<ProduktDaten> pProdukte)
+	{
+		DefaultTableModel model = (DefaultTableModel) tblProdukte.getModel();
+		model.setRowCount(0);
+		for (int p = 0; p < pProdukte.size(); p++)
+		{
+			model.addRow(new Object[]
+			{
+				pProdukte.get(p).liesProduktNr(),
+				pProdukte.get(p).liesBezeichnung(),
+				pProdukte.get(p).liesVerkaufspreis(),
+				pProdukte.get(p).liesLagerbestand(),
+			}
+			);
+		}
 	}
 }
