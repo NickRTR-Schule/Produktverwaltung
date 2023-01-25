@@ -200,7 +200,7 @@ public class Benutzerschnittstelle extends JFrame
 
 	protected void geklicktLoeschen() 
 	{
-		dieSteuerung.geklicktLoeschen(tblProdukte.getSelectedRow());
+		dieSteuerung.geklicktLoeschen(Integer.parseInt(txtProduktnummer.getText()));
 	}
 
 	protected void geklicktAendern() 
