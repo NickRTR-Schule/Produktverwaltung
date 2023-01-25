@@ -1,7 +1,7 @@
 package steuerung;
 
 import benutzerschnittstelle.Benutzerschnittstelle;
-import datenspeicherung.datei.ProduktSpeicher;
+import datenspeicherung.db.ProduktSpeicher;
 
 public class Steuerung 
 {

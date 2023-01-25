@@ -150,7 +150,7 @@ public class ProduktSpeicher
 	{
 		oeffneDatenbank();
 
-		// DB-Anfrage zum Löschen eines Produkts
+		// DB-Anfrage zum Löschen eines Produkts	
 		String sqlStmt = "DELETE FROM produkt ";
 		sqlStmt += "WHERE produktnr = ?";
 
